@@ -1,4 +1,5 @@
 .calculator{
+    width: 450px;
     background-color: grey;
 }
 
@@ -24,5 +25,20 @@
 button {
     height: 60px;
     font-size: 35px;
+}
+
+.button-operator {
+    background-color: blue;
+    border: none;
+}
+
+.button-equal {
+    background-color: red;
+    border: none;
+    grid-row-start: 2;
+    grid-row-end: 6;
+    grid-column-start: 4;
+    grid-column-end: 5;
+    height: 100%;
 }
 

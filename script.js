@@ -13,26 +13,34 @@ function init() {
             handleNum(event.target.innerText, display);
         }
         if (['+','-','*','/'].includes(action)) {
-            console.log('operator button!')
             handleOperator(action, display);
         }
         
         if (action === 'decimal') {
             handleDecimal(event.target.innerText, display);
-            console.log('decimal');
         }
     
         if (action === 'clear') {
-            console.log('clear button!');
             clear(display);
         }
     
         if (action === 'calculate') {
             calculate(display);
-            console.log('equal button!');
+        }
+    });
+
+    document.addEventListener('keyUp', function(event){
+        if(event.key === '.'){
+            handleDecimal();
+            console.log('decimal');
+        } else if(+event.key >= 0 && +event.key <= 9){
+            handleNum(event.key ,display);
+        } else if(['+','-','*','/'].includes(event.key)){
+            handleOperator(event.key, display)
         }
     });
 }
+
 if(document.querySelector('.calculator')){
     init();
 }
@@ -42,7 +50,7 @@ var canDec = true;
 var canEval = false;
 
 function handleNum(num, screen){
-    if (screen === '0') {
+    if (screen.innerText === '0') {
         setScreen(num, screen);
     } else {
         addToScreen(num, screen);
@@ -64,6 +72,8 @@ function handleOperator(operator, screen) {
 function clear(screen){
     clearScreen(screen)
     canEval = false;
+    canOp = false;
+    canDec = true;
 }
 
 function handleDecimal(val, screen){
